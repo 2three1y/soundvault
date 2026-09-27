@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A searchable guide to accessible soundpacks, audio themes, and sound tools.">
+<title>Soundvault — soundpack archive</title>
+<style>
+:root { color-scheme: light dark; --bg:#10151d; --panel:#192331; --text:#f4f7fb; --muted:#c1ccda; --accent:#87d7ff; }
+* { box-sizing:border-box; }
+body { margin:0; font:1rem/1.65 system-ui,sans-serif; background:var(--bg); color:var(--text); }
+header, main, footer { width:min(100% - 2rem, 58rem); margin-inline:auto; }
+header { padding:3rem 0 1rem; }
+h1 { font-size:clamp(2rem,6vw,3.5rem); line-height:1.1; margin:0 0 1rem; }
+h2 { line-height:1.2; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.search { position:sticky; top:0; z-index:1; padding:1rem; background:var(--bg); }
+input { width:100%; padding:.9rem 1rem; border:2px solid #718096; border-radius:.6rem; font:inherit; color:var(--text); background:var(--panel); }
+section { margin:1rem 0; padding:1.25rem; background:var(--panel); border-radius:.8rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:1rem; }
+.card { padding:1rem; border:1px solid #536174; border-radius:.6rem; }
+.actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+.button { display:inline-block; padding:.55rem .85rem; border:2px solid var(--accent); border-radius:.45rem; font-weight:700; }
+.muted { color:var(--muted); }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<header>
+<p class="muted">An accessible directory for sound collections</p>
+<h1>Soundvault</h1>
+<p>Find soundpacks, operating-system sounds, accessibility audio themes, and related tools in one searchable guide.</p>
+</header>
+<main>
+<section aria-labelledby="why">
+<h2 id="why">Why this archive exists</h2>
+<p>Useful sound resources can be scattered across folders and hard to browse. Soundvault provides a lightweight, keyboard-friendly index so you can locate a collection and follow its source download. Files stay with their original host where appropriate; large bundles are not duplicated here.</p>
+<p class="muted">Source archive: <a href="https://files.mad-gamer.com/">MG Storage</a>. Availability and licensing are determined by the source; please review its terms before redistribution.</p>
+</section>
+<div class="search">
+<label for="catalog-search"><strong>Search soundpacks and files</strong></label>
+<input id="catalog-search" type="search" placeholder="Try NVDA, iOS, VoiceOver…" autocomplete="off" aria-controls="catalog">
+<p id="search-status" class="muted" aria-live="polite">Showing all collections.</p>
+</div>
+<div id="catalog" class="grid">
+<section class="card" data-search="fastsm soundpacks audio packs sounds"><h2>FastSM Soundpacks</h2><p>Browse the available soundpack collection and select the pack that fits your setup. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=FastSM%20Soundpacks">Visit to Download</a></div></section>
+<section class="card" data-search="ios iphone ipad sounds audio"><h2>iOS sounds</h2><p>Browse iOS-related audio in the Audio directory. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio">Visit to Download</a></div></section>
+<section class="card" data-search="macos mac voiceover accessibility sounds audio"><h2>macOS and VoiceOver sounds</h2><p>Explore the Audio directory for macOS and VoiceOver-related sound resources. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio">Visit to Download</a></div></section>
+<section class="card" data-search="nvda audio themes screen reader accessibility"><h2>NVDA Audio Themes</h2><p>Browse audio theme resources for NVDA and its accessibility workflows. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=NVDA">Visit to Download</a></div></section>
+<section class="card" data-search="sound manager schemes configuration"><h2>Sound Manager Schemes</h2><p>Find schemes and related sound configurations. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Sound%20Manager%20Schemes">Visit to Download</a></div></section>
+<section class="card" data-search="soundfonts large banks audio"><h2>Soundfonts</h2><p>Large soundfont banks are best downloaded from the source archive. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Soundfonts">Visit to Download</a></div></section>
+<section class="card" data-search="ubuntu system sounds"><h2>Ubuntu Sounds</h2><p>Browse sounds for Ubuntu and related system audio. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Ubuntu%20Sounds">Visit to Download</a></div></section>
+<section class="card" data-search="ttcom sounds texts"><h2>TTCom Sounds and Texts</h2><p>Browse the sound and text resources in this collection. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=TTCom%20Sounds%20and%20Texts">Visit to Download</a></div></section>
+<section class="card" data-search="nvgt scripts"><h2>NVGT Scripts</h2><p>Related tools and scripts are listed at the source. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=NVGT%20Scripts">Visit to Download</a></div></section>
+<section class="card" data-search="miscellaneous installers iso large bundles"><h2>Miscellaneous and large bundles</h2><p>ISOs, large installer bundles, and heavy sound directories should be obtained directly from the source.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Visit to Download</a></div></section>
+</div>
+<p id="no-results" hidden>No matching collections. Try another search.</p>
+</main>
+<footer><p class="muted">Soundvault is an index, not the host of the linked files. <a href="https://files.mad-gamer.com/">Open MG Storage</a>.</p></footer>
+<script>
+const search = document.querySelector('#catalog-search');
+const cards = [...document.querySelectorAll('#catalog [data-search]')];
+const status = document.querySelector('#search-status');
+const empty = document.querySelector('#no-results');
+search.addEventListener('input', () => {
+  const query = search.value.trim().toLocaleLowerCase();
+  let count = 0;
+  for (const card of cards) {
+    const visible = !query || card.textContent.toLocaleLowerCase().includes(query) || card.dataset.search.includes(query);
+    card.hidden = !visible;
+    if (visible) count++;
+  }
+  status.textContent = query ? `${count} ${count === 1 ? 'collection' : 'collections'} found.` : 'Showing all collections.';
+  empty.hidden = count !== 0;
+});
+</script>
+</body>
+</html>
