@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A searchable guide to accessible soundpacks, audio themes, and sound tools.">
-<title>Soundvault — soundpack archive</title>
+<meta name="description" content="Accessible, searchable catalog of soundpacks, audio themes, tools, and sound resources from MG Storage.">
+<title>Soundvault — accessible sound archive</title>
 <style>
 :root { color-scheme: light dark; --bg:#10151d; --panel:#192331; --text:#f4f7fb; --muted:#c1ccda; --accent:#87d7ff; }
 * { box-sizing:border-box; }
 body { margin:0; font:1rem/1.65 system-ui,sans-serif; background:var(--bg); color:var(--text); }
-header, main, footer { width:min(100% - 2rem, 58rem); margin-inline:auto; }
+header, main, footer { width:min(100% - 2rem, 64rem); margin-inline:auto; }
 header { padding:3rem 0 1rem; }
 h1 { font-size:clamp(2rem,6vw,3.5rem); line-height:1.1; margin:0 0 1rem; }
 h2 { line-height:1.2; }
@@ -18,7 +18,7 @@ a:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-
 .search { position:sticky; top:0; z-index:1; padding:1rem; background:var(--bg); }
 input { width:100%; padding:.9rem 1rem; border:2px solid #718096; border-radius:.6rem; font:inherit; color:var(--text); background:var(--panel); }
 section { margin:1rem 0; padding:1.25rem; background:var(--panel); border-radius:.8rem; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:1rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr)); gap:1rem; }
 .card { padding:1rem; border:1px solid #536174; border-radius:.6rem; }
 .actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
 .button { display:inline-block; padding:.55rem .85rem; border:2px solid var(--accent); border-radius:.45rem; font-weight:700; }
@@ -28,36 +28,41 @@ section { margin:1rem 0; padding:1.25rem; background:var(--panel); border-radius
 </head>
 <body>
 <header>
-<p class="muted">An accessible directory for sound collections</p>
+<p class="muted">A keyboard-friendly directory of sound collections</p>
 <h1>Soundvault</h1>
-<p>Find soundpacks, operating-system sounds, accessibility audio themes, and related tools in one searchable guide.</p>
+<p>Soundvault makes soundpacks, accessibility audio, system sounds, and tools easier to discover. Search the catalog, then follow a verified deep link to the original MG Storage entry. Downloads remain hosted by the source archive.</p>
 </header>
 <main>
 <section aria-labelledby="why">
 <h2 id="why">Why this archive exists</h2>
-<p>Useful sound resources can be scattered across folders and hard to browse. Soundvault provides a lightweight, keyboard-friendly index so you can locate a collection and follow its source download. Files stay with their original host where appropriate; large bundles are not duplicated here.</p>
-<p class="muted">Source archive: <a href="https://files.mad-gamer.com/">MG Storage</a>. Availability and licensing are determined by the source; please review its terms before redistribution.</p>
+<p>Audio resources can be scattered across folders and difficult to browse. This lightweight, accessible catalog groups discovered collections and their files in one place. Direct download links below go to MG Storage, not to files mirrored in this repository. Large archives, installers, disk images, and soundfont banks are marked “Visit to Download.”</p>
+<p class="muted">Source: <a href="https://files.mad-gamer.com/">MG Storage</a>. Check the source for availability, file details, permissions, and licensing before use or redistribution.</p>
 </section>
 <div class="search">
-<label for="catalog-search"><strong>Search soundpacks and files</strong></label>
-<input id="catalog-search" type="search" placeholder="Try NVDA, iOS, VoiceOver…" autocomplete="off" aria-controls="catalog">
-<p id="search-status" class="muted" aria-live="polite">Showing all collections.</p>
+<label for="catalog-search"><strong>Search categories and files</strong></label>
+<input id="catalog-search" type="search" placeholder="Try VoiceOver.atp, AirPods, TweeseCake…" autocomplete="off" aria-controls="catalog">
+<p id="search-status" class="muted" aria-live="polite">Showing all entries.</p>
 </div>
 <div id="catalog" class="grid">
-<section class="card" data-search="fastsm soundpacks audio packs sounds"><h2>FastSM Soundpacks</h2><p>Browse the available soundpack collection and select the pack that fits your setup. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=FastSM%20Soundpacks">Visit to Download</a></div></section>
-<section class="card" data-search="ios iphone ipad sounds audio"><h2>iOS sounds</h2><p>Browse iOS-related audio in the Audio directory. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio">Visit to Download</a></div></section>
-<section class="card" data-search="macos mac voiceover accessibility sounds audio"><h2>macOS and VoiceOver sounds</h2><p>Explore the Audio directory for macOS and VoiceOver-related sound resources. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio">Visit to Download</a></div></section>
-<section class="card" data-search="nvda audio themes screen reader accessibility"><h2>NVDA Audio Themes</h2><p>Browse audio theme resources for NVDA and its accessibility workflows. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=NVDA">Visit to Download</a></div></section>
-<section class="card" data-search="sound manager schemes configuration"><h2>Sound Manager Schemes</h2><p>Find schemes and related sound configurations. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Sound%20Manager%20Schemes">Visit to Download</a></div></section>
-<section class="card" data-search="soundfonts large banks audio"><h2>Soundfonts</h2><p>Large soundfont banks are best downloaded from the source archive. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Soundfonts">Visit to Download</a></div></section>
-<section class="card" data-search="ubuntu system sounds"><h2>Ubuntu Sounds</h2><p>Browse sounds for Ubuntu and related system audio. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Ubuntu%20Sounds">Visit to Download</a></div></section>
-<section class="card" data-search="ttcom sounds texts"><h2>TTCom Sounds and Texts</h2><p>Browse the sound and text resources in this collection. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=TTCom%20Sounds%20and%20Texts">Visit to Download</a></div></section>
-<section class="card" data-search="nvgt scripts"><h2>NVGT Scripts</h2><p>Related tools and scripts are listed at the source. No usage limit is imposed by this index.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=NVGT%20Scripts">Visit to Download</a></div></section>
-<section class="card" data-search="miscellaneous installers iso large bundles"><h2>Miscellaneous and large bundles</h2><p>ISOs, large installer bundles, and heavy sound directories should be obtained directly from the source.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Visit to Download</a></div></section>
+<section class="card" data-search="airpods case sounds audio"><h2>Audio — AirPods Case Sounds</h2><p>Explore the AirPods sound collection, including the case sound directory.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio/AirPods%20Sounds/Case">Visit AirPods Case Sounds</a></div></section>
+<section class="card" data-search="chromeos chrome os sounds wav flac ogg keypress audio"><h2>Audio — ChromeOS Sounds</h2><p>Direct source directory for ChromeOS sounds, including keypress, ChromeVox, and system audio files.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio/ChromeOS%20Sounds">Visit ChromeOS Sounds</a></div></section>
+<section class="card" data-search="ios tones audio alarms alert ringtones"><h2>Audio — iOS Tones &amp; Audio</h2><p>Browse alarm/wake-up ringtones, alert tones, and ringtones in the iOS Tones collection; the broader Audio archive also lists iOS sound collections.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio/iOS%20Tones">Visit iOS Tones</a><a class="button" href="https://files.mad-gamer.com/?dir=Audio">Visit Audio</a></div></section>
+<section class="card" data-search="macos voiceover sounds wav accessibility"><h2>Audio — macOS VoiceOver Sounds</h2><p>Browse individual VoiceOver sound files in the source directory.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio/macOS%20VoiceOver%20Sounds">Visit macOS VoiceOver Sounds</a></div></section>
+<section class="card" data-search="windows 11 sounds dark light audio"><h2>Audio — Windows 11 Sounds</h2><p>Open the Windows 11 sound collection, which contains Dark and Light folders.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Audio/Windows%2011%20Sounds">Visit Windows 11 Sounds</a></div></section>
+<section class="card" data-search="nvda add-ons addons ask chatgpt audio manager eloquence flite mg enhancements star coagulator synth"><h2>NVDA — Add-ons</h2><p>Selected source entries: Ask ChatGPT, Audio Manager, Eloquence, Flite, MG Enhancements, and STAR Coagulator Synth. Other add-ons are available in the full directory.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/Ask%20ChatGPT.nvda-addon">Download Ask ChatGPT</a><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/Audio%20Manager.nvda-addon">Download Audio Manager</a><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/Eloquence.nvda-addon">Download Eloquence</a><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/Flite.nvda-addon">Download Flite</a><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/MG%20Enhancements.nvda-addon">Download MG Enhancements</a><a class="button" href="https://files.mad-gamer.com/NVDA/Add-ons/STAR%20Coagulator%20Synth.nvda-addon">Download STAR Coagulator Synth</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Add-ons">Visit all NVDA Add-ons</a></div></section>
+<section class="card" data-search="nvda audio themes voiceover android atp"><h2>NVDA — Audio Themes</h2><p>Audio theme files listed in the NVDA Audio Themes directory.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/NVDA/Audio%20Themes/VoiceOver.atp">Download VoiceOver.atp</a><a class="button" href="https://files.mad-gamer.com/NVDA/Audio%20Themes/android.atp">Download android.atp</a></div></section>
+<section class="card" data-search="nvda soundpacks cubic gcw ericson samsung random waves installers exe"><h2>NVDA — Soundpacks &amp; Installers</h2><p>Explore seven soundpack subfolders and the source’s NVDA installer directory. Installers are larger executable downloads hosted at MG Storage.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/Cubic">Visit Cubic</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/GCW">Visit GCW</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/NVDA%20Ericson%20Sound%20Theme">Visit NVDA Ericson Sound Theme</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/Old%20Samsung%20Sounds">Visit Old Samsung Sounds</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/Random%20NVDA%20Sound%20Scheme">Visit Random NVDA Sound Scheme</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/Random%20NVDA%20Sound%20Scheme%20Version%202">Visit Random NVDA Sound Scheme v2</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks/Waves%202">Visit Waves 2</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Installers">Visit to Download NVDA Installers</a><a class="button" href="https://files.mad-gamer.com/?dir=NVDA/Soundpacks">Visit all NVDA Soundpacks</a></div></section>
+<section class="card" data-search="sound manager schemes windows 10 windows 11 dark mode windows 7 95 vista glass xp build 2481 ths"><h2>Sound Manager Schemes</h2><p>Windows schemes (.ths) available as direct source downloads.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%2010.ths">Download Windows 10</a><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%2011%20Dark%20Mode.ths">Download Windows 11 Dark Mode</a><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%207.ths">Download Windows 7</a><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%2095.ths">Download Windows 95</a><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%20Vista%20Glass.ths">Download Windows Vista Glass</a><a class="button" href="https://files.mad-gamer.com/Sound%20Manager%20Schemes/Windows%20XP%20Build%202481.ths">Download Windows XP Build 2481</a></div></section>
+<section class="card" data-search="soundfonts sf2 android crisis elten live hq natural gm microsoft gs wavetable all in one bank large"><h2>Soundfonts</h2><p>These soundfont banks can be large; visit the source listing to download. The directory includes Android, Crisis, Elten, Live HQ Natural SoundFont GM, Microsoft GS Wavetable Synth, and ALL In ONE GM V1.1 Bank.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Soundfonts">Visit to Download Soundfonts</a></div></section>
+<section class="card" data-search="fastsm soundpacks tweesecake zip"><h2>FastSM Soundpacks</h2><p>TweeseCake soundpack archive.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/FastSM%20Soundpacks/TweeseCake.zip">Download TweeseCake.zip</a></div></section>
+<section class="card" data-search="ubuntu sounds yaru alsa freedesktop gnome sound-icons speech-dispatcher"><h2>Ubuntu Sounds</h2><p>Browse Yaru, ALSA, freedesktop, GNOME, sound-icons, and speech-dispatcher collections.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=Ubuntu%20Sounds">Visit Ubuntu Sounds</a></div></section>
+<section class="card" data-search="ttcom sounds texts"><h2>TTCom Sounds &amp; Texts</h2><p>Open the source’s sounds and text directories.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/?dir=TTCom%20Sounds%20and%20Texts/sounds">Visit TTCom Sounds</a><a class="button" href="https://files.mad-gamer.com/?dir=TTCom%20Sounds%20and%20Texts/text">Visit TTCom Texts</a></div></section>
+<section class="card" data-search="nvgt scripts python scripts audio spacer basic mastodon client mg notify pack manager copy music py"><h2>NVGT Scripts &amp; Python Scripts</h2><p>NVGT scripts listed at the source include Audio Spacer, Basic Mastodon Client, MG Notify, and Pack Manager. Use the directory link to browse them. The requested copy_music.py was not present in the discovered NVGT Scripts directory listing.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/NVGT%20Scripts/Audio%20Spacer.nvgt">Download Audio Spacer</a><a class="button" href="https://files.mad-gamer.com/NVGT%20Scripts/Basic%20Mastodon%20Client.nvgt">Download Basic Mastodon Client</a><a class="button" href="https://files.mad-gamer.com/NVGT%20Scripts/MG%20Notify.nvgt">Download MG Notify</a><a class="button" href="https://files.mad-gamer.com/NVGT%20Scripts/Pack%20Manager.nvgt">Download Pack Manager</a><a class="button" href="https://files.mad-gamer.com/?dir=NVGT%20Scripts">Visit NVGT Scripts</a><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Visit Misc for Python scripts</a></div></section>
+<section class="card" data-search="miscellaneous tools audex apk audiodefense ipa dectalk apk startube setup exe ttcom configurator cheat engine installer large"><h2>Miscellaneous &amp; Tools</h2><p>Selected source items include Audex Installer APK, AudioDefense IPA, DECtalk APK, STARTubeSetup.exe, TTCom Configurator.exe, and Cheat Engine 6.7.exe. The directory also contains assorted installers, packages, and large archives.</p><div class="actions"><a class="button" href="https://files.mad-gamer.com/Misc/Audex%20Installer.apk">Visit to Download Audex APK</a><a class="button" href="https://files.mad-gamer.com/Misc/AudioDefense.ipa">Visit to Download AudioDefense IPA</a><a class="button" href="https://files.mad-gamer.com/Misc/DECtalk.apk">Visit to Download DECtalk APK</a><a class="button" href="https://files.mad-gamer.com/Misc/STARTubeSetup.exe">Visit to Download STARTubeSetup</a><a class="button" href="https://files.mad-gamer.com/Misc/TTCom%20Configurator.exe">Visit to Download TTCom Configurator</a><a class="button" href="https://files.mad-gamer.com/Misc/Cheat%20Engine%206.7.exe">Visit to Download Cheat Engine</a><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Visit Miscellaneous &amp; Tools</a></div></section>
 </div>
-<p id="no-results" hidden>No matching collections. Try another search.</p>
+<p id="no-results" hidden>No matching entries. Try another search term.</p>
 </main>
-<footer><p class="muted">Soundvault is an index, not the host of the linked files. <a href="https://files.mad-gamer.com/">Open MG Storage</a>.</p></footer>
+<footer><p class="muted">Soundvault is an index; linked files are hosted by MG Storage. <a href="https://files.mad-gamer.com/">Open the source archive</a>.</p></footer>
 <script>
 const search = document.querySelector('#catalog-search');
 const cards = [...document.querySelectorAll('#catalog [data-search]')];
@@ -71,7 +76,7 @@ search.addEventListener('input', () => {
     card.hidden = !visible;
     if (visible) count++;
   }
-  status.textContent = query ? `${count} ${count === 1 ? 'collection' : 'collections'} found.` : 'Showing all collections.';
+  status.textContent = query ? `${count} ${count === 1 ? 'entry' : 'entries'} found.` : 'Showing all entries.';
   empty.hidden = count !== 0;
 });
 </script>
