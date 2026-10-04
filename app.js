@@ -69,6 +69,12 @@ search.addEventListener('keydown', event => {
   platformSelect.addEventListener('change', updateShareUI);
   updateShareUI();
   copyButton.addEventListener('click', () => copyText(defaultShareText));
+  instanceInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      actionButton.click();
+    }
+  });
   actionButton.addEventListener('click', () => {
     const platform = platformSelect.value;
     const promoText = shareTextByPlatform[platform] || shareTextByPlatform.twitter;
