@@ -21,24 +21,32 @@ search.addEventListener('keydown', event => {
 
 
 
-// Lightweight, accessible sharing controls; no external services or SDKs.
+// Platform-specific sharing content and accessible controls; no external SDKs.
 (() => {
-  const promoText = 'Soundvault — The Vault of sounds. For everyone to access. Curated speech tools, soundpacks, and accessible audio resources.';
   const canonicalUrl = 'https://2three1y.github.io/soundvault/';
-  const shareText = promoText + ' ' + canonicalUrl;
+  const shareTextByPlatform = {
+    twitter: 'Soundvault — The Vault of sounds. For everyone to access. Curated speech tools, soundpacks, and accessible audio resources. #soundvault',
+    mastodon: 'Soundvault — The Vault of sounds. For everyone to access. A curated archive of soundpacks, retro screen reader chimes, and tactile computing audio. #soundvault',
+    threads: 'Soundvault — The Vault of sounds. For everyone to access. Curated accessible soundpacks and speech tools. #soundvault',
+    nostr: 'Soundvault — The Vault of sounds. For everyone to access. Free, sovereign catalog of accessible audio, speech engines, and sound themes. #soundvault',
+    facebook: 'Soundvault — The Vault of sounds. For everyone to access. #soundvault'
+  };
+  const defaultShareText = shareTextByPlatform.twitter + ' ' + canonicalUrl;
   const platformSelect = document.querySelector('#share-platform');
   const actionButton = document.querySelector('#share-action-btn');
   const copyButton = document.querySelector('#share-copy-btn');
+  const instanceField = document.querySelector('#mastodon-instance-field');
+  const instanceInput = document.querySelector('#mastodon-instance');
   const status = document.querySelector('#share-status');
   const deviceButton = document.querySelector('#device-share');
 
-  const copyShareText = async () => {
+  const copyText = async text => {
     try {
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(shareText);
+        await navigator.clipboard.writeText(text);
       } else {
         const field = document.createElement('textarea');
-        field.value = shareText;
+        field.value = text;
         field.setAttribute('readonly', '');
         field.style.position = 'fixed';
         field.style.opacity = '0';
@@ -50,34 +58,48 @@ search.addEventListener('keydown', event => {
       }
       status.textContent = 'Copied share text to clipboard!';
     } catch {
-      status.textContent = 'Could not copy automatically. You can copy this text: ' + shareText;
+      status.textContent = 'Could not copy automatically. You can copy this text: ' + text;
     }
   };
 
-  const updateActionLabel = () => {
-    actionButton.textContent = 'Share to ' + platformSelect.options[platformSelect.selectedIndex].text;
+  const updateShareUI = () => {
+    instanceField.hidden = platformSelect.value !== 'mastodon';
   };
 
-  platformSelect.addEventListener('change', updateActionLabel);
-  copyButton.addEventListener('click', copyShareText);
-  actionButton.addEventListener('click', async () => {
+  platformSelect.addEventListener('change', updateShareUI);
+  updateShareUI();
+  copyButton.addEventListener('click', () => copyText(defaultShareText));
+  actionButton.addEventListener('click', () => {
     const platform = platformSelect.value;
-    if (platform === 'nostr') {
-      await copyShareText();
-      return;
-    }
+    const promoText = shareTextByPlatform[platform] || shareTextByPlatform.twitter;
     const encodedUrl = encodeURIComponent(canonicalUrl);
     const encodedText = encodeURIComponent(promoText + ' ' + canonicalUrl);
     let intentUrl;
-    if (platform === 'twitter') {
-      intentUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(promoText) + '&url=' + encodedUrl;
-    } else if (platform === 'mastodon') {
-      intentUrl = 'https://mastodonshare.com/?text=' + encodedText;
+
+    if (platform === 'mastodon') {
+      let instance = instanceInput.value.trim().replace(/^@+/, '').replace(/^https?:\/\//i, '').replace(/@/g, '').replace(/\/+$/, '');
+      if (!instance) instance = 'mastodon.social';
+      try {
+        const parsedInstance = new URL('https://' + instance);
+        if (parsedInstance.pathname !== '/' || parsedInstance.search || parsedInstance.hash) throw new Error('Enter an instance domain only');
+        instance = parsedInstance.host;
+      } catch {
+        status.textContent = 'Enter a valid Mastodon instance domain, such as mastodon.social.';
+        instanceInput.focus();
+        return;
+      }
+      intentUrl = 'https://' + instance + '/share?text=' + encodedText;
+    } else if (platform === 'twitter') {
+      intentUrl = 'https://twitter.com/intent/tweet?text=' + encodedText;
     } else if (platform === 'threads') {
       intentUrl = 'https://www.threads.net/intent/post?text=' + encodedText;
     } else if (platform === 'facebook') {
-      intentUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+      intentUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '&quote=' + encodeURIComponent(promoText);
+    } else if (platform === 'nostr') {
+      copyText(encodedText ? promoText + ' ' + canonicalUrl : promoText);
+      return;
     }
+
     if (intentUrl) window.open(intentUrl, '_blank', 'noopener,noreferrer');
   });
 
@@ -85,7 +107,7 @@ search.addEventListener('keydown', event => {
     deviceButton.hidden = false;
     deviceButton.addEventListener('click', async () => {
       try {
-        await navigator.share({title: 'Soundvault', text: promoText, url: canonicalUrl});
+        await navigator.share({title: 'Soundvault', text: shareTextByPlatform.twitter, url: canonicalUrl});
       } catch (error) {
         if (error.name !== 'AbortError') status.textContent = 'Device sharing is unavailable right now. You can use the selected platform or copy the share text.';
       }

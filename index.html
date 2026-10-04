@@ -31,10 +31,13 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 .share-controls button, .share-button { color:var(--accent); cursor:pointer; }
 .share-controls select:focus-visible, .share-controls button:focus-visible, .share-button:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
 .share-status { min-height:1.65em; }
+.mastodon-instance { margin:1rem 0; flex-basis:100%; }
+.mastodon-instance label { display:block; margin-bottom:.35rem; }
+.mastodon-instance input { width:min(100%, 34rem); }
 </style>
 </head>
 <body>
-<header>
+<header id="top">
 <p class="muted">Keyboard- and screen reader-friendly navigation</p>
 <h1>Soundvault Audio Archive</h1>
 <p>A curated shelf of soundpacks, speech tools, and audio resources for accessible computing.</p>
@@ -164,7 +167,13 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 <option value="facebook">Facebook</option>
 </select>
 
-<button id="share-action-btn" type="button">Share to Twitter (X)</button>
+<div id="mastodon-instance-field" class="mastodon-instance" hidden>
+<label for="mastodon-instance">Mastodon instance domain:</label>
+
+<input id="mastodon-instance" type="text" placeholder="e.g. techhub.social or mastodon.social" autocomplete="off">
+</div>
+
+<button id="share-action-btn" type="button">Open share window</button>
 
 <button id="share-copy-btn" type="button">Copy share text</button>
 </div>
@@ -175,6 +184,7 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 
 <p id="share-status" class="muted share-status" role="status" aria-live="polite"></p>
 </section>
+<p class="muted"><a href="#top">Back to top</a></p>
 </footer>
 </body>
 </html>
