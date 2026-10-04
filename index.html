@@ -25,6 +25,11 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 .button:focus-visible { outline:3px solid var(--text); outline-offset:3px; }
 .muted { color:var(--muted); }
 [hidden] { display:none !important; }
+
+.share-links { display:flex; flex-wrap:wrap; gap:.75rem; list-style:none; margin:1rem 0; padding:0; }
+.share-links a, .share-links button { display:inline-block; padding:.55rem .85rem; border:2px solid var(--accent); border-radius:.45rem; background:transparent; color:var(--accent); font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
+.share-links a:focus-visible, .share-links button:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.share-status { min-height:1.65em; }
 </style>
 </head>
 <body>
@@ -140,6 +145,29 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 
 <footer>
   <p class="muted">Soundvault is an index; downloads are hosted by the original <a href="https://mad-gamer.com/">MG Storage</a> site. Browse the <a href="https://files.mad-gamer.com/">source archive</a> for files. Check the source for availability, file details, permissions, and licensing. View the <a href="https://github.com/2three1y/soundvault">source code</a> on GitHub</p>
+
+
+<section class="share-section" aria-labelledby="share-heading">
+<h2 id="share-heading">Share Soundvault</h2>
+
+<p>Pass this accessible audio archive along to someone who might enjoy it.</p>
+
+<ul class="share-links">
+<li><a data-share="twitter" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener noreferrer">Share on Twitter</a></li>
+
+<li><a data-share="mastodon" href="https://mastodonshare.com/" target="_blank" rel="noopener noreferrer">Share on Mastodon</a></li>
+
+<li><a data-share="threads" href="https://www.threads.net/intent/post" target="_blank" rel="noopener noreferrer">Share on Threads</a></li>
+
+<li><button type="button" data-share="nostr">Copy share text for Nostr</button></li>
+
+<li><a data-share="facebook" href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener noreferrer">Share on Facebook</a></li>
+</ul>
+
+<p><button type="button" id="device-share" class="share-button" hidden>Share via device...</button></p>
+
+<p id="share-status" class="muted share-status" role="status" aria-live="polite"></p>
+</section>
 </footer>
 </body>
 </html>
