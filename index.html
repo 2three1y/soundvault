@@ -124,34 +124,13 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 <article class="card"><h3>TTCom Configurator</h3><p>Setup utility for managing server profiles, audio codecs, hotkeys, and channel settings in TeamTalk.</p><a class="button" href="https://files.mad-gamer.com/Misc/TTCom%20Configurator.exe">Download TTCom Configurator (Windows EXE)</a></article>
 <article class="card"><h3>Unimic Audio Utility</h3><p>Virtual microphone router piping sound effects, media files, and synthesizer output directly into microphone streams.</p><a class="button" href="https://files.mad-gamer.com/Misc/Unimic.exe">Download Unimic Audio Utility (Windows EXE)</a></article>
 <article class="card"><h3>Windows Spammer Utility</h3><p>High-rate window creation and messaging loop stress-testing tool for benchmarking window manager performance.</p><a class="button" href="https://files.mad-gamer.com/Misc/Windows%20Spammer.exe">Download Windows Spammer Utility (Windows EXE)</a></article>
-<article class="card"><h3>Windows ISO &amp; Virtual Machine Archive</h3><p>Pre-configured virtual machine environment and disc images for legacy operating system and software testing.</p><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Download Windows ISO &amp; Virtual Machine Archive</a></article>
+<article class="card"><h3>Windows ISO &amp; Virtual Machine Archive</h3><p>Pre-configured virtual machine environment and disc images for legacy operating system and software testing.</p><p class="muted"><strong>Platform:</strong> Windows / Hypervisor<br><strong>Type:</strong> Directory / ISO &amp; VM</p><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Download Windows ISO &amp; Virtual Machine Archive</a></article>
 </div></section>
 </div>
 <p id="no-results" hidden>No matching entries. Try another search term.</p>
 </main>
 
-<script>
-const form = document.querySelector('#search-form');
-const search = document.querySelector('#search');
-const cards = [...document.querySelectorAll('#catalog article.card')];
-const status = document.querySelector('#search-status');
-const empty = document.querySelector('#no-results');
-function filterCards() {
-  const query = search.value.trim().toLocaleLowerCase();
-  let count = 0;
-  for (const card of cards) {
-    const visible = !query || card.textContent.toLocaleLowerCase().includes(query);
-    card.hidden = !visible;
-    if (visible) count++;
-  }
-  status.textContent = query ? `${count} ${count === 1 ? 'entry' : 'entries'} found.` : 'Showing all entries.';
-  empty.hidden = count !== 0;
-}
-form.addEventListener('submit', event => { event.preventDefault(); filterCards(); });
-search.addEventListener('keydown', event => {
-  if (event.key === 'Enter' || event.keyCode === 13) { event.preventDefault(); filterCards(); }
-});
-</script>
+<script src="app.js" defer></script>
 </body>
 <footer>
   <p class="muted">Soundvault is an index; downloads are hosted by the original <a href="https://mad-gamer.com/">MG Storage</a> site. Browse the <a href="https://files.mad-gamer.com/">source archive</a> for files. Check the source for availability, file details, permissions, and licensing. View the <a href="https://github.com/2three1y/soundvault">source code</a> on GitHub</p>
