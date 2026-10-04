@@ -26,9 +26,10 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 .muted { color:var(--muted); }
 [hidden] { display:none !important; }
 
-.share-links { display:flex; flex-wrap:wrap; gap:.75rem; list-style:none; margin:1rem 0; padding:0; }
-.share-links a, .share-links button { display:inline-block; padding:.55rem .85rem; border:2px solid var(--accent); border-radius:.45rem; background:transparent; color:var(--accent); font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
-.share-links a:focus-visible, .share-links button:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.share-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin:1rem 0; }
+.share-controls select, .share-controls button, .share-button { min-height:2.75rem; padding:.55rem .85rem; border:2px solid var(--accent); border-radius:.45rem; background:var(--panel); color:var(--text); font:inherit; font-weight:700; }
+.share-controls button, .share-button { color:var(--accent); cursor:pointer; }
+.share-controls select:focus-visible, .share-controls button:focus-visible, .share-button:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
 .share-status { min-height:1.65em; }
 </style>
 </head>
@@ -148,21 +149,27 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 
 
 <section class="share-section" aria-labelledby="share-heading">
-<h2 id="share-heading">Share Soundvault</h2>
+<h2 id="share-heading">The Vault of sounds. For everyone to access</h2>
 
-<p>Pass this accessible audio archive along to someone who might enjoy it.</p>
+<p>Whether you're hunting for retro screen reader chimes, legacy hypervisor images, or just want your workstation to sound distinctly superior, pass the vault key along. Zero trackers, no algorithms, pure sound.</p>
 
-<ul class="share-links">
-<li><a data-share="twitter" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener noreferrer">Share on Twitter</a></li>
+<div class="share-controls">
+<label for="share-platform">Select platform:</label>
 
-<li><a data-share="mastodon" href="https://mastodonshare.com/" target="_blank" rel="noopener noreferrer">Share on Mastodon</a></li>
+<select id="share-platform">
+<option value="twitter">Twitter (X)</option>
+<option value="mastodon">Mastodon</option>
+<option value="threads">Threads</option>
+<option value="nostr">Nostr</option>
+<option value="facebook">Facebook</option>
+</select>
 
-<li><a data-share="threads" href="https://www.threads.net/intent/post" target="_blank" rel="noopener noreferrer">Share on Threads</a></li>
+<button id="share-action-btn" type="button">Share to Twitter (X)</button>
 
-<li><button type="button" data-share="nostr">Copy share text for Nostr</button></li>
+<button id="share-copy-btn" type="button">Copy share text</button>
+</div>
 
-<li><a data-share="facebook" href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener noreferrer">Share on Facebook</a></li>
-</ul>
+<p class="muted">Selecting Nostr lets you copy the note text to paste directly into your preferred client (Damus, Primal, Coracle, Amethyst, etc.). The copy button works for every platform.</p>
 
 <p><button type="button" id="device-share" class="share-button" hidden>Share via device...</button></p>
 

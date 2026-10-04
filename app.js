@@ -21,22 +21,18 @@ search.addEventListener('keydown', event => {
 
 
 
-// Accessible, dependency-free sharing intents for Soundvault.
+// Lightweight, accessible sharing controls; no external services or SDKs.
 (() => {
-  const pageUrl = new URL(window.location.href);
-  pageUrl.hash = '';
-  const url = pageUrl.href;
-  const title = document.title;
-  const shareText = title + ' ' + url;
-  const encodedText = encodeURIComponent(shareText);
-  const encodedUrl = encodeURIComponent(url);
-  document.querySelector('[data-share="twitter"]').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodedUrl;
-  document.querySelector('[data-share="threads"]').href = 'https://www.threads.net/intent/post?text=' + encodedText;
-  document.querySelector('[data-share="mastodon"]').href = 'https://mastodonshare.com/?text=' + encodedText;
-  document.querySelector('[data-share="facebook"]').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+  const promoText = 'Soundvault — The Vault of sounds. For everyone to access. Curated speech tools, soundpacks, and accessible audio resources.';
+  const canonicalUrl = 'https://2three1y.github.io/soundvault/';
+  const shareText = promoText + ' ' + canonicalUrl;
+  const platformSelect = document.querySelector('#share-platform');
+  const actionButton = document.querySelector('#share-action-btn');
+  const copyButton = document.querySelector('#share-copy-btn');
   const status = document.querySelector('#share-status');
-  const nostrCopy = document.querySelector('[data-share="nostr"]');
-  const copyText = async () => {
+  const deviceButton = document.querySelector('#device-share');
+
+  const copyShareText = async () => {
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(shareText);
@@ -50,22 +46,48 @@ search.addEventListener('keydown', event => {
         field.select();
         const copied = document.execCommand('copy');
         field.remove();
-        if (!copied) throw new Error('Copy command unavailable');
+        if (!copied) throw new Error('Clipboard copy unavailable');
       }
-      status.textContent = 'Share text copied. Paste it into your Nostr client.';
+      status.textContent = 'Copied share text to clipboard!';
     } catch {
-      status.textContent = 'Could not copy automatically. Select and copy this page address for your Nostr client: ' + url;
+      status.textContent = 'Could not copy automatically. You can copy this text: ' + shareText;
     }
   };
-  nostrCopy.addEventListener('click', copyText);
-  const deviceButton = document.querySelector('#device-share');
+
+  const updateActionLabel = () => {
+    actionButton.textContent = 'Share to ' + platformSelect.options[platformSelect.selectedIndex].text;
+  };
+
+  platformSelect.addEventListener('change', updateActionLabel);
+  copyButton.addEventListener('click', copyShareText);
+  actionButton.addEventListener('click', async () => {
+    const platform = platformSelect.value;
+    if (platform === 'nostr') {
+      await copyShareText();
+      return;
+    }
+    const encodedUrl = encodeURIComponent(canonicalUrl);
+    const encodedText = encodeURIComponent(promoText + ' ' + canonicalUrl);
+    let intentUrl;
+    if (platform === 'twitter') {
+      intentUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(promoText) + '&url=' + encodedUrl;
+    } else if (platform === 'mastodon') {
+      intentUrl = 'https://mastodonshare.com/?text=' + encodedText;
+    } else if (platform === 'threads') {
+      intentUrl = 'https://www.threads.net/intent/post?text=' + encodedText;
+    } else if (platform === 'facebook') {
+      intentUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+    }
+    if (intentUrl) window.open(intentUrl, '_blank', 'noopener,noreferrer');
+  });
+
   if (typeof navigator.share === 'function') {
     deviceButton.hidden = false;
     deviceButton.addEventListener('click', async () => {
       try {
-        await navigator.share({title, text: 'Explore this curated archive of accessible audio and speech tools.', url});
+        await navigator.share({title: 'Soundvault', text: promoText, url: canonicalUrl});
       } catch (error) {
-        if (error.name !== 'AbortError') status.textContent = 'Device sharing is unavailable right now. You can use one of the sharing links instead.';
+        if (error.name !== 'AbortError') status.textContent = 'Device sharing is unavailable right now. You can use the selected platform or copy the share text.';
       }
     });
   }
