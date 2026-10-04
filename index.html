@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Accessible catalog of soundpacks, speech tools, audio themes, and system sounds.">
-<title>Soundvault — accessible sound archive</title>
+<title>Soundvault â accessible sound archive</title>
 <style>
-:root { color-scheme: light dark; --bg:#10151d; --panel:#192331; --text:#f4f7fb; --muted:#c1ccda; --accent:#87d7ff; }
+:root { color-scheme: light dark; --bg:#141821; --panel:#202936; --text:#f7f3e8; --muted:#d1ccbe; --accent:#f3c969; }
 * { box-sizing:border-box; }
 body { margin:0; font:1rem/1.65 system-ui,sans-serif; background:var(--bg); color:var(--text); }
 header, main, footer { width:min(100% - 2rem,64rem); margin-inline:auto; }
 header { padding:3rem 0 1rem; }
 h1 { font-size:clamp(2rem,6vw,3.5rem); line-height:1.1; margin:0 0 1rem; }
-h2 { line-height:1.2; }
+h2 { line-height:1.2; color:var(--accent); }
 a { color:var(--accent); text-underline-offset:.18em; }
 a:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
 .search { position:sticky; top:0; z-index:1; padding:1rem; background:var(--bg); }
@@ -29,14 +29,14 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 </head>
 <body>
 <header>
-<p class="muted">A keyboard-friendly directory of sound collections</p>
+<p class="muted">Keyboard- and screen reader-friendly navigation</p>
 <h1>Soundvault</h1>
-<p>Browse soundpacks, accessibility audio, system sounds, and tools.</p>
+<p>A curated shelf of soundpacks, speech tools, and audio resources for accessible computing.</p>
 </header>
 <main>
 <form class="search" id="search-form" role="search">
 <label for="search"><strong>Search cards</strong></label>
-<input id="search" type="search" placeholder="Search cards" autocomplete="off" aria-controls="catalog">
+<input id="search" type="search" placeholder="Search voices, sound themes, tools..." autocomplete="off" aria-controls="catalog">
 <p id="search-status" class="muted" aria-live="polite">Showing all entries.</p>
 </form>
 <div id="catalog">
@@ -127,11 +127,11 @@ section { margin:1.5rem 0; padding:1.25rem; background:var(--panel); border-radi
 <article class="card"><h3>Windows ISO &amp; Virtual Machine Archive</h3><p>Pre-configured virtual machine environment and disc images for legacy operating system and software testing.</p><p class="muted"><strong>Platform:</strong> Windows / Hypervisor<br><strong>Type:</strong> Directory / ISO &amp; VM</p><a class="button" href="https://files.mad-gamer.com/?dir=Misc">Download Windows ISO &amp; Virtual Machine Archive</a></article>
 </div></section>
 </div>
-<p id="no-results" hidden>No matching entries. Try another search term.</p>
+<p id="no-results" hidden>Couldn't find any matching sounds or tools this time. Try a broader search like 'VoiceOver', 'Apex', or 'soundfont'.</p>
 </main>
 
 <script src="app.js" defer></script>
-</body>
+
 <footer>
   <p class="muted">Soundvault is an index; downloads are hosted by the original <a href="https://mad-gamer.com/">MG Storage</a> site. Browse the <a href="https://files.mad-gamer.com/">source archive</a> for files. Check the source for availability, file details, permissions, and licensing. View the <a href="https://github.com/2three1y/soundvault">source code</a> on GitHub</p>
 </footer>
